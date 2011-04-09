@@ -32,7 +32,7 @@ public class QuantumCircuitsBlockListener extends BlockListener {
                 }
                 String[] sBlockLines = sbBlockSign.getLines();
 
-                if(sBlockLines[0].equals("quantum")){
+                if(sBlockLines[0].equalsIgnoreCase("quantum") || sBlockLines[0].equalsIgnoreCase("qtoggle")){
                     int iActivateX = Integer.parseInt(sBlockLines[1]);
                     int iActivateY = Integer.parseInt(sBlockLines[2])-1;//To account for the player's +1 shown onscreen
                     int iActivateZ = Integer.parseInt(sBlockLines[3]);
@@ -43,20 +43,34 @@ public class QuantumCircuitsBlockListener extends BlockListener {
                     if(iActivateZ < 0) iActivateZ--;
 
                     Block bBlockToActivate = bBlock.getWorld().getBlockAt(iActivateX,iActivateY,iActivateZ);
-
                     if(bBlockToActivate.getType() == Material.LEVER){
-                        int iData = (int)bBlockToActivate.getData();
-                        if(event.getNewCurrent() > 0){
-                            if((iData&0x08)!=0x08){
-                                    iData|=0x08;
-                            }
+                        int iData = (int) bBlockToActivate.getData();
+
+                        if(sBlockLines[0].equalsIgnoreCase("quantum")){
+                                if(event.getNewCurrent() > 0){
+                                    if((iData&0x08) != 0x08){
+                                        iData|=0x08;
+                                        bBlockToActivate.setData((byte) iData);
+                                    }
+                                }
+                                else{
+                                    if((iData&0x08) == 0x08){
+                                        iData^=0x08;
+                                        bBlockToActivate.setData((byte) iData);
+                                    }
+                                } 
+                        }else if(sBlockLines[0].equalsIgnoreCase("qtoggle")){
+                                if(event.getOldCurrent() < event.getNewCurrent()){
+                                    if((iData&0x08) != 0x08){
+                                        iData|=0x08;
+                                        bBlockToActivate.setData((byte) iData);
+                                    }
+                                    else if((iData&0x08) == 0x08){
+                                        iData^=0x08;
+                                        bBlockToActivate.setData((byte) iData);
+                                    }
+                                }
                         }
-                        else{
-                            if((iData&0x08) == 0x08){
-                                iData^=0x08;
-                            }
-                        }
-                        bBlockToActivate.setData((byte) iData);
                     }
                 }
             }
