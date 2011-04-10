@@ -1,4 +1,3 @@
-
 package Ne0nx3r0.QuantumCircuits;
 
 import org.bukkit.block.Block;
