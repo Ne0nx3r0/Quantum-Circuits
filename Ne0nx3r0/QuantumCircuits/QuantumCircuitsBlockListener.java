@@ -33,13 +33,8 @@ public class QuantumCircuitsBlockListener extends BlockListener {
 
                 if(sBlockLines[0].equalsIgnoreCase("quantum") || sBlockLines[0].equalsIgnoreCase("qtoggle")){
                     int iActivateX = Integer.parseInt(sBlockLines[1]);
-                    int iActivateY = Integer.parseInt(sBlockLines[2])-1;//To account for the player's +1 shown onscreen
+                    int iActivateY = Integer.parseInt(sBlockLines[2]);//To account for the player's +1 shown onscreen
                     int iActivateZ = Integer.parseInt(sBlockLines[3]);
-
-                    //doesnt account for 0,0,0?
-                    if(iActivateX < 0) iActivateX--;
-                    if(iActivateY < 0) iActivateY--;
-                    if(iActivateZ < 0) iActivateZ--;
 
                     Block bBlockToActivate = bBlock.getWorld().getBlockAt(iActivateX,iActivateY,iActivateZ);
                     if(bBlockToActivate.getType() == Material.LEVER){

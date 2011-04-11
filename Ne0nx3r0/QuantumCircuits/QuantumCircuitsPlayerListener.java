@@ -26,11 +26,7 @@ public class QuantumCircuitsPlayerListener extends PlayerListener {
         if(event.getClickedBlock().getType() == Material.LEVER){
             Location lClicked = event.getClickedBlock().getLocation();
 
-            int iX = lClicked.getBlockX();
-            int iY = lClicked.getBlockY();
-            int iZ = lClicked.getBlockZ();
-
-            mLastClicks.put(event.getPlayer().getName(),new int[] {iX,iY,iZ});
+            mLastClicks.put(event.getPlayer().getName(),new int[] {lClicked.getBlockX(),lClicked.getBlockY(),lClicked.getBlockZ()});
 
             event.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE+"Quantum location stored!");
         }
