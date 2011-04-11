@@ -19,7 +19,7 @@ public class QuantumCircuitsPlayerListener extends PlayerListener {
 
     @Override
     public void onPlayerInteract(PlayerInteractEvent event){
-        if(event.getItem() == null || event.getItem().getType() != Material.REDSTONE){
+        if(event.getItem() == null || event.getClickedBlock() == null || event.getItem().getType() != Material.REDSTONE){
             return;
         }
 
