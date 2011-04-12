@@ -34,7 +34,7 @@ public class QuantumCircuitsPlayerListener extends PlayerListener {
             Sign sbClickedSign = (Sign) event.getClickedBlock().getState();
             String[] sLines = sbClickedSign.getLines();
 
-            if(sLines[0].equalsIgnoreCase("quantum") || sLines[0].equalsIgnoreCase("qtoggle")){
+            if(sLines[0].equalsIgnoreCase("quantum") || sLines[0].equalsIgnoreCase("qtoggle") || sLines[0].substring(0,4).equalsIgnoreCase("qlag")){
                 int[] iCoordinates = mLastClicks.get(event.getPlayer().getName());
 
                 sbClickedSign.setLine(1,Integer.toString(iCoordinates[0]));
