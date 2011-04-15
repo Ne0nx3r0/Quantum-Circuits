@@ -8,6 +8,9 @@ import org.bukkit.Material;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import org.bukkit.ChatColor;
+import org.bukkit.block.BlockFace;
+import org.bukkit.event.block.Action;
+import org.bukkit.block.Block;
 
 public class QuantumCircuitsPlayerListener extends PlayerListener {
     private final QuantumCircuits plugin;
@@ -34,7 +37,7 @@ public class QuantumCircuitsPlayerListener extends PlayerListener {
             Sign sbClickedSign = (Sign) event.getClickedBlock().getState();
             String[] sLines = sbClickedSign.getLines();
 
-            if(sLines[0].equalsIgnoreCase("quantum") || sLines[0].equalsIgnoreCase("qtoggle") || sLines[0].substring(0,4).equalsIgnoreCase("qlag")){
+            if(sLines[0].equalsIgnoreCase("quantum") || sLines[0].equalsIgnoreCase("qtoggle") || sLines[0].equalsIgnoreCase("qon") || sLines[0].equalsIgnoreCase("qoff") || sLines[0].substring(0,4).equalsIgnoreCase("qlag")){
                 int[] iCoordinates = mLastClicks.get(event.getPlayer().getName());
 
                 sbClickedSign.setLine(1,Integer.toString(iCoordinates[0]));
