@@ -8,9 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import org.bukkit.ChatColor;
-import org.bukkit.block.BlockFace;
-import org.bukkit.event.block.Action;
-import org.bukkit.block.Block;
 
 public class QuantumCircuitsPlayerListener extends PlayerListener {
     private final QuantumCircuits plugin;
