@@ -56,7 +56,7 @@ public class QuantumCircuitsBlockListener extends BlockListener {
         if(on && (iData&0x08) != 0x08){
             iData|=0x08;//send power on
             block.setData((byte) iData);
-        }else if((iData&0x08) == 0x08){
+        }else if(!on && (iData&0x08) == 0x08){
             iData^=0x08;//send power off
             block.setData((byte) iData);
         }
