@@ -9,6 +9,7 @@ import org.bukkit.Material;
 
 public class QuantumCircuitsBlockListener extends BlockListener {
     private final QuantumCircuits plugin;
+    private static BlockFace[] faces = { BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST,BlockFace.WEST, BlockFace.UP, BlockFace.DOWN };
 
     public QuantumCircuitsBlockListener(final QuantumCircuits plugin) {
         this.plugin = plugin;
@@ -18,15 +19,18 @@ public class QuantumCircuitsBlockListener extends BlockListener {
     public void onBlockRedstoneChange(BlockRedstoneEvent event) {
         Block bBlock = event.getBlock();
 
-        BlockFace[] faces = { BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST,BlockFace.WEST, BlockFace.UP, BlockFace.DOWN };
-
         for(int i = 0; i < faces.length; i++){
-            if((faces[i] == BlockFace.DOWN && (bBlock.getFace(faces[i],2).getType() == Material.SIGN_POST ||  bBlock.getFace(faces[i],2).getType() == Material.WALL_SIGN)) || bBlock.getFace(faces[i]).getType() == Material.SIGN_POST || bBlock.getFace(faces[i]).getType() == Material.WALL_SIGN){
-                if(faces[i] == BlockFace.DOWN){
-                    QuantumActivate((Sign) bBlock.getFace(faces[i],2).getState(),event.getOldCurrent(),event.getNewCurrent());
-                }else{
-                    QuantumActivate((Sign) bBlock.getFace(faces[i]).getState(),event.getOldCurrent(),event.getNewCurrent());
-                }  
+            if(faces[i] == BlockFace.DOWN && (
+               bBlock.getFace(faces[i],2).getType() == Material.SIGN_POST
+            || bBlock.getFace(faces[i],2).getType() == Material.WALL_SIGN)){
+                
+                QuantumActivate((Sign) bBlock.getFace(faces[i],2).getState(),event.getOldCurrent(),event.getNewCurrent());
+
+            }else if(bBlock.getFace(faces[i]).getType() == Material.SIGN_POST
+                  || bBlock.getFace(faces[i]).getType() == Material.WALL_SIGN){
+
+                QuantumActivate((Sign) bBlock.getFace(faces[i]).getState(),event.getOldCurrent(),event.getNewCurrent());
+                
             }
         }
     }
