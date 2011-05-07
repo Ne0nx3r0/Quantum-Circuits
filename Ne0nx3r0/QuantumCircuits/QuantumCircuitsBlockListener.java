@@ -69,7 +69,7 @@ public class QuantumCircuitsBlockListener extends BlockListener {
     private void QuantumActivate(Sign activator,int iOldCurrent,int iNewCurrent){
         String[] sBlockLines = activator.getLines();
 
-        if(sBlockLines[0].equals("")|| sBlockLines[1].equals("") || sBlockLines[2].equals("") || sBlockLines[3].equals("")){
+        if(sBlockLines[0].equals("") || sBlockLines[1].equals("") || sBlockLines[2].equals("") || sBlockLines[3].equals("")){
             return;
         }
 
@@ -111,7 +111,7 @@ public class QuantumCircuitsBlockListener extends BlockListener {
                 if(iNewCurrent > 0){
                     setOff(bReceiver);
                 }
-            }else if (sBlockLines[0].substring(0,4).equalsIgnoreCase("qlag")){
+            }else if (sBlockLines[0].length() > 4 && sBlockLines[0].substring(0,4).equalsIgnoreCase("qlag")){
                 String[] sLagTimes = sBlockLines[0].split("/");
 
                 boolean powerOn;
